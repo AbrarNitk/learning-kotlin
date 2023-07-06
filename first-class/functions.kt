@@ -12,4 +12,20 @@ fun main() {
     println("Max: ${max(5, 6)}");
 
     println(topLevel());
+
+    displayChar();
+    println();
+    displayChar('#');
+    println();
+    displayChar(size=10);
+    println();
+    displayChar(size=10, char='5'); // this will also work
+}
+
+// default args
+
+fun displayChar(char: Char = '*', size: Int = 10) {
+    repeat(size) {
+        print(char)
+    }
 }

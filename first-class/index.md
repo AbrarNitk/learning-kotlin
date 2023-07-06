@@ -17,6 +17,19 @@ fun main() {
 
 ```
 
+## Compile the Program
+
+
+```
+kotlinc control.kt -include-runtime -d control.jar
+```
+
+## Run the Program
+
+```
+java -jar control.jar
+```
+
 
 ## Function
 
@@ -83,3 +96,62 @@ fun displaySeparator(char: Char = '*', size: Int = 10) {
 
 ```
 
+
+## Control Structure
+
+### when as switch
+
+```
+enum class Color {
+    BLUE, ORANGE, RED
+}
+
+fun getDescription(color: Color): String {
+    when(color) {
+        BlUE -> "cold"
+        ORANGE -> "mild"
+        RED -> "hot"
+    }
+}
+
+// equal or with when
+fun respondToInput(input: String) = when (input) {
+    "y", "yes" -> "I am glad that you agree"
+    "n", "no" -> "Sorry to hear that"
+    else -> "I do not understand you"
+}
+
+// Any expression can be used as a branch
+fun mix(c1: Color, c2: Color) = 
+    when(setOf(c1, c2)) {
+        setOf(RED, YELLOW) -> ORANGE,
+        setOf(YELLOW, BLUE) -> GREEN,
+        else -> throw Exception("Dirty Color")
+    }
+
+// Checking Types with When
+when(pet) {
+    is Cat -> pet.meow()
+    is Dog -> pet.woof()
+}
+
+// capturing when subject in a Variables
+
+fun getSound(): String = 
+    when(val pet = getMyFavouritePet()) {
+        is Cat -> pet.meow()
+        is Dog -> pet.woof()
+        else -> "---"
+    }
+
+// checking conditions: when without argument
+fun updateWeather(degrees: Int) {
+    val (d, c) = when {
+        // any boolean condition as branch condition
+        degrees < 5 -> "color" to BLUE
+        degress < 23 -> "mild" to ORANGE
+        else -> "hot" to RED
+    }
+}
+
+```
