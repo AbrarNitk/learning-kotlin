@@ -155,3 +155,46 @@ fun updateWeather(degrees: Int) {
 }
 
 ```
+
+## Loops
+
+```
+
+// while loop
+while(condition) {}
+
+
+// do-while loop
+do {
+} while(condition)
+
+
+// for loop
+val list = listOf("a", "b", "c")
+for(s in list) {
+    print(s)
+}
+
+
+// or use type also
+for(s: String in list) {}
+
+
+// Iterating with Index
+for((index, element) in list.withIndex()) {
+    println("${index}: ${element}")
+}
+
+
+// Iterating over range
+for(x in 1..9) {
+    println(x)
+}
+
+
+// until in range(9 will be excluded)
+for(x in 1 until 9) { print(x) }
+
+// Iterating with step
+for(x in 9 downTo 1 step 2){}
+```
