@@ -379,3 +379,45 @@ infix fun <A, B> A.to(that: B): Pair(this, that)
 "Answer" to 42
 
 ```
+
+
+# Nullable
+
+- In Kotlin nullable types allow a variable to hold the null value
+- `var name: String? = null`
+- use safe calls `name?.length` to access the value of the variable
+- elvis operator `?:` provides the default value in case of the value is null
+- `val len = name?.length ?: 0`
+- safe cast `as?` use the safe cast operator to perform safe cast that returns null if cast was unsuccessful
+- `val stringLength: Int? = someValue as? String`
+- `!!` explicitly throw the null pointer exception
+
+```kotlin
+val s: String?
+// below len should also be type of null
+val len: Int? = s?.length
+// or assign a default value to it
+val len: Int = s?.length ?: 0
+```
+
+## Nullable Types Under the hood
+
+- Under the hood, @Nullable and @NotNull added to the types
+
+```kotlin
+fun foo(): String = "foo"
+// Under the hood
+@NotNull
+public static final String foo() {
+    return "foo"
+}
+```
+
+```kotlin
+fun foo(): String? = "foo"
+// Under the hood
+@Nullable
+public static final String foo() {
+   return "foo" 
+}
+```
