@@ -479,3 +479,25 @@ list.any {
 map.mapValues { entry -> "${entry.key} -> ${entry.value}" }
 map.mapValues { (key, value) -> "$key -> $value" }
 ```
+
+
+## Using Collection Functions
+
+- filter: filter out the elements based on predicate
+- map: maps the element based on given mapper
+- any: check if there is any element matching with the predicate
+- find: it finds the element with the matching predicate
+- first/firstOrNull: same as find
+- count: counts the element based on the given predicate
+- parition: divides the collection into two collections based on the given predicate
+- groupBy: group the elements based on provided key
+- associateBy: associate the elements with the given key and value as the collection value
+    - key should be unique in the collection. if keys are not unique, duplicate keys will be
+    - removed and last element will be choosen.
+- associate: associate build a map based on specified keys and values
+- zip: zip the elements of two lists as key value pair, if one of the list is the bigger sizes
+    - the final list will be having size equal to the shorter list.
+- zipWithNext: it zip elements with its adjacent element [(1, 2), (2, 3), (3, 4)]
+- flatten: flatten the list of list in one single list
+- flatMap: It combines two operations flat and map: first it will flat the element then it will use the
+    - mapper function.
