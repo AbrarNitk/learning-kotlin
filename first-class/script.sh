@@ -13,13 +13,14 @@ function compile() {
 
   program_name=$(basename "$1" .kt)
   kotlinc $1 -include-runtime -d ${program_name}.jar
-
+  return "$?"
 }
 
 function run() {
   compile "$@"
+  compile_code=$?
   program_name=$(basename "$1" .kt)
-  if [ $? -eq 0 ]; then
+  if [ "$compile_code" -eq 0 ]; then
     java -jar ${program_name}.jar
   else
     echo "not compiled exit with status: ${?}"
