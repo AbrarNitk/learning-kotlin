@@ -96,6 +96,51 @@ fun displaySeparator(char: Char = '*', size: Int = 10) {
 
 ```
 
+### Returning a value from a function
+
+
+```kotlin
+
+fun funName(): return_type {
+    body
+    return statement;
+}
+
+```
+
+- `Unit` types are like void in other langs
+
+```kotlin
+fun birthdayGreeting(): Unit {
+    println("Happy Birthday, Rover!")
+    println("You are now 5 years old!")
+}
+```
+
+- Returning a string
+
+```kotlin
+fun birthdayGreeting(val name: String, val age: Int): String {
+    val nameGreeting = "Happy Birthday, Rover!"
+    val ageGreeting = "You are now 5 years old!"
+    return "$nameGreeting\n$ageGreeting"
+}
+```
+
+- named arguments
+
+```kotlin
+println(birthdayGreeting(name = "Rex", age = 2))
+```
+
+- default arguments
+
+```kotlin
+fun birthdayGreeting(name: String = "Rover", age: Int): String {
+    return "Happy Birthday, $name! You are now $age years old!"
+}
+```
+
 
 ## Control Structure
 

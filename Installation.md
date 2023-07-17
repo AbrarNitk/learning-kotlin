@@ -18,4 +18,14 @@
 - export the path in shell
 - `export PATH="$PATH:/Users/abrark/bin/kotlinc/bin"`
 - source the shell file and check `kotlin -version`
-- 
+
+
+### Setup Android Studio
+
+- Download Android Studio Flamingo
+
+
+
+# Kotlin Start Courses
+
+- https://developer.android.com/courses
