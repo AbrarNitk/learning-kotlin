@@ -421,3 +421,61 @@ public static final String foo() {
    return "foo" 
 }
 ```
+
+
+
+# Lambda
+
+## Syntax
+
+```kotlin
+{x: Int, y: Int -> x + y}
+```
+
+### Examples
+
+- Full Syntax
+
+```kotlin
+list.any({x: Int -> x > 0})
+```
+
+- When lambda is the last argument it can be moved out of the parenthesis
+
+```kotlin
+list.any() {x: Int -> x > 0}
+```
+
+- if brackets are empty, they can be omitted
+
+```kotlin
+list.any {x: Int -> x > 0}
+```
+
+- also type can be omitted also
+
+```kotlin
+list.any {x -> x > 0}
+```
+
+- if it has only one argument it can be replaced with it
+
+```kotlin
+list.any { it > 0}
+```
+
+- multi line lambda
+
+```kotlin
+list.any {
+    println("processing $it")
+    it > 0
+}
+```
+
+- destructuring declaration
+
+```kotlin
+map.mapValues { entry -> "${entry.key} -> ${entry.value}" }
+map.mapValues { (key, value) -> "$key -> $value" }
+```
