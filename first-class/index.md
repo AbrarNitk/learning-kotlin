@@ -489,7 +489,7 @@ map.mapValues { (key, value) -> "$key -> $value" }
 - find: it finds the element with the matching predicate
 - first/firstOrNull: same as find
 - count: counts the element based on the given predicate
-- parition: divides the collection into two collections based on the given predicate
+- partition: divides the collection into two collections based on the given predicate
 - groupBy: group the elements based on provided key
 - associateBy: associate the elements with the given key and value as the collection value
     - key should be unique in the collection. if keys are not unique, duplicate keys will be

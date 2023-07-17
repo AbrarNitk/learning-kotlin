@@ -35,7 +35,7 @@ fun main() {
     // filter and count with age lesser than 30
     println("People of age lesser than 30: ${heroes.filter { it.age < 30 }.size}")
 
-    // partition the colelction into two, younger and oldest
+    // partition the collection into two, younger and oldest
     val (youngest, oldest) = heroes.partition { it.age < 30 }
     println("Youngest Count: ${youngest.size}, Oldest Count: ${oldest.size}")
 

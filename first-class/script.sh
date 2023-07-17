@@ -22,6 +22,7 @@ function run() {
   program_name=$(basename "$1" .kt)
   if [ "$compile_code" -eq 0 ]; then
     java -jar "${program_name}".jar
+    rm "${program_name}".jar
   else
     echo "not compiled exit with status: ${?}"
   fi
