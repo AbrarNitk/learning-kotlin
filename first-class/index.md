@@ -1,5 +1,6 @@
 # First Course From Coursera
 
+- [Link](https://www.coursera.org/learn/kotlin-for-java-developers/)
 
 ## Mac Installation
 
@@ -303,3 +304,59 @@ if (myDate in startDate..endDate) {}
 if(element in list) {} 
 if (list.contains(element)) {}
 ```
+
+# Exceptions
+
+- No difference between unchecked and checked exceptions
+- Your function does need to specify which exception it can throw
+- It does also ned not to handle the exceptions
+
+```kotlin
+// Example
+val percentage = if(number in 0..100) { number }
+                    else {
+                        throw IllegalArgumentException("Number must be between 0 and 100: $number")
+                    }
+
+```
+
+## `try` is an expression
+
+```kotlin
+val number = try {
+    Integer.parseInt(string)
+} catch (e: NumberFormatException) {
+    // or assing null
+    // null
+    return e
+}
+```
+
+# Extension Functions
+
+- we have to import the extension function wherever we have to use them
+- we can't call private function of the extended class from extension functions  
+
+## Example
+
+```kotlin
+fun String.lastChar() = this.get(this.length - 1)
+val c: Char = "abc".lastChar()
+```
+
+## Calling Extension function from Java
+
+Let's say we have a file `StringExtensions.kt` in which the below function is defined
+
+```kotlin
+// we can omit this keyword also 
+fun String.lastChar() = get(length - 1)
+```
+
+If we have to call it in Java let's say in file JavaClass.java
+
+```java
+import static StringExtensions.lastChar;
+char ch = lastChar("abc")
+```
+
