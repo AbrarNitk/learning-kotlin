@@ -153,7 +153,7 @@ enum class Color {
 
 fun getDescription(color: Color): String {
     when(color) {
-        BlUE -> "cold"
+        BLUE -> "cold"
         ORANGE -> "mild"
         RED -> "hot"
     }
@@ -198,7 +198,6 @@ fun updateWeather(degrees: Int) {
         else -> "hot" to RED
     }
 }
-
 ```
 
 ## Loops
@@ -242,4 +241,65 @@ for(x in 1 until 9) { print(x) }
 
 // Iterating with step
 for(x in 9 downTo 1 step 2){}
+```
+
+## `in` checks and ranges
+
+- `for(i in 1..9)`
+- `c in 'a'..'z'`
+
+### not in a range
+
+- `c !in '0'..'9'`
+- `fun isNotDigit(c: Char) = c !in '0'..'9'`
+
+### in as when condition
+
+```kotlin
+
+fun recognise() = when(c) {
+    in '0'..'9' -> "It is digit"
+    in 'a'..'z', in 'A'..'Z' -> "It is a letter"
+    else -> "I do not know"
+}
+```
+
+## Different Ranges
+
+- `1..9`
+- `1 until 10`
+- `'a'..'z'`
+- `"ab".."az"`
+- `startDate..endDate`
+
+### Storing ranges
+
+- val intRange: IntRange = `1..9`
+- val anotherIntRage: IntRange = `1 until 10`
+- val charRange: CharRange = `'a'..'z'`
+- val stringRange: ClosedRange<String> = `"ab".."az"`
+- val dateRange: ClosedRange<MyDate> = `startDate..endDate`
+
+### Comparing Strings
+
+`"ball" in "a".."k"` => `a <= "ball" && "ball" <= "k"`
+
+### Range of custom types
+
+```kotlin
+class MyDate: Comparable<MyDate>
+```
+
+```kotlin
+if (myDate.compareTo(startDate) >= 0 && myDate.compareTo(endDate) <= 0) {}
+if (startDate <= myDate && myDate <= endDate) {}
+if (myDate in startDate..endDate) {}
+```
+
+### Belonging to collection
+
+```kotlin
+// both are same
+if(element in list) {} 
+if (list.contains(element)) {}
 ```
