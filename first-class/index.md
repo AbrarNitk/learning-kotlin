@@ -336,6 +336,10 @@ val number = try {
 
 - we have to import the extension function wherever we have to use them
 - we can't call private function of the extended class from extension functions  
+- extension function work in the static function fashion
+- Extensions are static java functions under the hood
+- No override for extension functions in Kotlin
+- Extensions can overload the members
 
 ## Example
 
@@ -360,3 +364,18 @@ import static StringExtensions.lastChar;
 char ch = lastChar("abc")
 ```
 
+## Extension function: `until` using infix form
+
+```kotlin
+infix fun Int.until(to: Int): IntRange
+// call type 1
+1.until(10)
+// OR
+1 until 10
+```
+
+```kotlin
+infix fun <A, B> A.to(that: B): Pair(this, that)
+"Answer" to 42
+
+```
