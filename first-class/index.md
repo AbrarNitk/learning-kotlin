@@ -546,3 +546,54 @@ fn?.invoke()
 
 ```
 
+
+
+# Member References
+
+```kotlin
+class Person(val name: String, val age: Int)
+people.maxBy{ it.age }
+people.maxBy(Person::age) // member reference
+```
+
+## Store a function in variable
+
+```kotlin
+fun isEven(i: Int): Boolean = i % 2 == 0
+val predicate = ::isEven
+// the above line is same as below line
+val predicate1 = { i: Int -> isEven(i) }
+```
+
+
+## Bound and non-bound reference
+
+```kotlin
+class Person(val name: String, val age: Int) {
+    fun isOlder(ageLimit: Int) = age > ageLimit
+}
+
+// This reference called non-bound
+val agePredicate: (Person, Int) -> Boolean = Person::isOlder
+val alice = Person("Alice", 29)
+agePredicate(alice, 21) // true
+
+// bound reference
+// in the below example, isOlder bounded to alice object
+val aliceAgePredicate: (Int) -> Boolean = alice::isOlder
+aliceAgePredicate(21) // true
+
+// The above code is same as
+val aliceAgePredicate: (Int) -> Boolean = { ageLimit -> alice.isOlder(ageLimit) }
+```
+
+## Bound to this reference
+
+```kotlin
+class Person(val name: String, val age: Int) { 
+    fun isOlder(val ageLimit: Int): Boolean = age > ageLimit 
+    // bound function to this reference
+   fun getAgePredicate() = this::isOlder // or ::isOlder
+}
+```
+
