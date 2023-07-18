@@ -147,7 +147,7 @@ fun birthdayGreeting(name: String = "Rover", age: Int): String {
 
 ### when as switch
 
-```
+```kotlin
 enum class Color {
     BLUE, ORANGE, RED
 }
@@ -634,5 +634,133 @@ fun duplicateNonZero(list: List<Int>): List<Int> {
         listOf(it, it)
   }
 }
+
+```
+
+
+
+# Properties, OOP and Conventions
+
+## Properties
+
+- Java Property(setter and getter called the property)
+
+```java
+class JavaClass {
+  private int foo = 0;
+
+  public int getFoo() {
+    return foo;
+  }
+  public void setFoo(int foo) {
+    this.foo = foo;
+  }
+}
+```
+
+- Kotlin Property
+
+```kotlin
+class KotlinClass {
+    var foo = 0
+}
+```
+
+- property = field + accessor
+- val = field + getter
+- var = field + getter + setter
+- use property directly not getter and setter method, under the hood getter and setters
+
+
+### Properties without field
+
+- property = accessor(s)
+- val = getter
+- var = getter + setter
+
+```kotlin
+class Rectangle(val height: Int, val width: Int) {
+    val isSquare: Boolean
+      private set // make the setter private
+      get() {
+          return height == width
+      }
+}
+```
+
+
+## Field
+
+- You can access `field` only inside accessors
+
+```kotlin
+class StateLogger { 
+    var state = false
+      set(value) {
+          println("state has changed: " + "$field to $value")
+        field = value
+      }
+}
+```
+
+## Default accessors
+
+```kotlin
+class A {
+    var trivialProperty: String = "abc"
+  // auto generate methods
+  // get() = field
+  // set(value: String) {
+  //   field = value
+  // }
+}
+```
+
+- You always use property instead of getter or setter
+
+## More About Properties
+
+- Define a property in the Interface
+
+```kotlin
+
+
+interface User {
+  val nickname: String
+}
+
+class FacebookUser(val accountId: Int) : User {
+  override val nickname = getFaceBookName(accountId)
+
+  fun getFaceBookName(val accountId: Int) {
+    return accountId.toString()
+  }
+}
+
+class Subscriber(val email: String): User {
+    override val nickname: String
+    get() = email.substringBefore('@')
+}
+```
+
+### Extension Properties
+
+```kotlin
+var String.lastIndex: Int
+  get() = this.length - 1
+
+val String.indices: IntRange
+  get() = 0..lastIndex
+```
+
+### Mutable Extension Property
+
+```kotlin
+
+var StringBuilder.lastChar: Char
+  get() = get(length - 1)
+  set(value: Char) {
+      this.setCharAt(length - 1, value)
+  }
 
 ```
