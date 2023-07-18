@@ -19,7 +19,7 @@ fun main() {
     val mapByAge: Map<Int, List<Hero>> = heroes.groupBy { x -> x.age }
     println("Group By Age: $mapByAge")
 
-    val (age, group) = mapByAge.maxBy { (_, group) -> group.size}!!
+    val (age, group) = mapByAge.maxBy { (_, group) -> group.size}
     println("group with max number of people: Age: ${age}, ${group}")
 
     // associateBy: It associates the whole object
@@ -33,4 +33,10 @@ fun main() {
     val mapByNameAssociate: Map<String, Int> = heroes.associate { it.name to it.age }
     println("Getting Unknown: ${mapByNameAssociate.getOrElse("unknown") { 0 }}")
 
+    // Better is to ask it an interview question
+    val allPossiblePairs: List<Pair<Hero, Hero>> = heroes.flatMap {
+        first  -> heroes.map { second -> first to second }
+    };
+    val (first: Hero, second: Hero) = allPossiblePairs.maxBy { it.first.age - it.second.age };
+    println("$first" + "$second")
 }
