@@ -597,3 +597,42 @@ class Person(val name: String, val age: Int) {
 }
 ```
 
+
+
+# return from Lambda
+
+```kotlin
+
+// labeled functions
+list.flatMap {
+    // this 
+    if(it == 0) return@flatMap listOf<Int>()
+    listOf(it, it)
+}
+
+// OR
+list.flatMap l@{
+  // this 
+  if(it == 0) return@l listOf<Int>()
+  listOf(it, it)
+}
+
+// solution using anonymous functions
+fun duplicateNonZero(list: List<Int>): List<Int> {
+    return list.flatMap(fun(e): List<Int> {
+        if (e == 0 ) return listOf<Int>()
+        return listOf(e, e)
+    })
+}
+
+// Another solution no return
+fun duplicateNonZero(list: List<Int>): List<Int> {
+  return list.flatMap {
+    if (it == 0 ) 
+        listOf()
+    else 
+        listOf(it, it)
+  }
+}
+
+```
