@@ -21,17 +21,29 @@ class Subscriber(private val email: String): User {
         }
 }
 
+class PropertySetter {
+    var value: String = ""
+        get() = field
+        set(value) {
+            field = value
+        }
+}
+
+
 fun main() {
-
-    val hm = HashMap<String, String>();
-    hm["v1"] = "v1"
-    hm["v2"] = "v2"
-
-    println("Used Java Map: $hm")
-
     val fb: User = FacebookUser(12345)
     println("${fb.nickname}, ${fb.nickname}")
 
     val subscriber: User = Subscriber("foo-subscriber@gmail.com")
     println("${subscriber.nickname}, ${subscriber.nickname}")
+
+    val hm = HashMap<String, String>();
+    hm["v1"] = "v1"
+    hm["v2"] = "v2"
+    println("Used Java Map: $hm")
+
+    var h = PropertySetter()
+    println(h.value)
+    h.value = "new value"
+    println(h.value)
 }

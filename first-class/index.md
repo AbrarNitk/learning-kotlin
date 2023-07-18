@@ -764,3 +764,37 @@ var StringBuilder.lastChar: Char
   }
 
 ```
+
+## Lazy or late initialization of properties
+
+## Lazy Property
+
+- using `by lazy`
+- it takes a lambda to provide the value
+
+```kotlin
+val lazyValue: String by lazy {
+  println("computed!")
+  "Hello"
+}
+
+class LazyProps {
+  val lazyValue: String by lazy {
+    println("computed!")
+    "Hello"
+  }
+}
+```
+
+### `lateinit`
+
+- it is to prevent from nullable types
+- lateinit variables can not be val
+- variable can not also be final
+- it can not be null also
+- can not be a primitive types
+
+```kotlin
+lateinit var myData: MyData
+```
+
