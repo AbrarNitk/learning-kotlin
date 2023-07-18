@@ -501,3 +501,48 @@ map.mapValues { (key, value) -> "$key -> $value" }
 - flatten: flatten the list of list in one single list
 - flatMap: It combines two operations flat and map: first it will flat the element then it will use the
     - mapper function.
+
+
+
+# Function types
+
+```kotlin
+val sum = {x: Int, y: Int -> x + y}
+// OR
+val newSum: (x: Int, y: Int) -> Int = {x, y -> x + y } 
+```
+
+## Calling Lambda directly
+
+```kotlin
+{ name -> println("Hey: $name") }("Abrar Khan")
+// OR
+
+run { println("Hey") }
+```
+
+## Lambda for Runnable
+
+```kotlin
+val run = Runnable { println("Hello Runnable") }
+```
+
+## Function types and nullability
+
+- () -> Int? vs (() -> Int)?
+- `() -> Int?`: Means return type of the function ins nullable
+- `(() -> Int)?`: Means this lambda can be nullable
+
+### How to call the nullable function
+
+```kotlin
+val fn: (() -> Int)? = null
+
+// first way
+if(fn != null) { fn() } // smart cast applies here
+
+// another way
+fn?.invoke()
+
+```
+
