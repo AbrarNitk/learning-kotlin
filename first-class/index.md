@@ -1177,3 +1177,78 @@ fun<T: Comparable<T>> max(first: T, second: T): T {
 fun <T> ensureTrailingPeriod(seq: T): T
     where T: CharSequence, T: Appendable {}
 ```
+
+
+## Conventions
+
+
+### Operator Overloading
+
+```kotlin
+
+class Point(val a: Int, val b: Int)
+
+operator fun Point.plus(other: Point): Point {
+    return Point(a + other.a, b + other.b)
+}
+
+fun addExample() { 
+    val p = Point(1, 2) + Point(2, 3)
+}
+```
+
+### Arithmetic Operator for overloading
+
+| expression | function name | 
+|:----------:|:-------------:|
+|   a + b    |     plus      |
+|   a - b    |     minus     |
+|   a * b    |     times     |
+|   a / b    |      div      |
+|   a % b    |      mod      |
+|     -a     |  unaryMinus   |
+
+
+### Conventions
+
+- Destructuring declaration & data classes
+- The below class autogenerate 3 methods
+
+```kotlin
+
+```
+
+```kotlin
+data class Contact(val name: String, val email: String, val phoneNumber: String) {
+    // auto generated
+    fun component1() = name
+    fun component2() = email
+    fun component3() = phoneNumber
+}
+val (name, _, phoneNumber) = Contact("", "", "")
+```
+
+
+# Useful library functions
+
+- run: run the block of code
+- let: allows to check the argument for being non-null
+  ```kotlin
+    fun getEmail(): Email?
+    val email = getEmail()
+    if (email != null) sendEmail(email)
+    // OR
+    email?.let { e -> sendEmail(e) }
+    // OR
+    getEmail()?.let { sendEmail(it) }
+    
+  ```
+- takeIf: returns the receiver object if it satisfies the given predicate, otherwise returns null
+  ```kotlin
+    issue.takeIf { it.status == FIXED }
+  val number = 42
+  number.takeIf { it > 10 } // 42
+  number.takeIf { it > 50 } // null
+  ```
+- takeUnless: Just opposite to takeIf
+- repeat: repeat given number of times `repeat(n)`
