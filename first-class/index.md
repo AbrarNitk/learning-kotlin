@@ -870,3 +870,70 @@ fun main() {
 }
 
 ```
+
+
+# Class Modifiers
+
+## `enums`
+
+```kotlin
+enum class Color {
+    BLUE, ORANGE, RED 
+}
+
+fun getDescription(color: Color) = 
+        when(color) {
+            Color.BLUE -> "cold"
+            Color.ORANGE -> "mild"
+            Color.RED -> "hot"
+        }
+```
+
+### enum class with properties
+
+```kotlin
+enum class Color(val r: Int, val g: Int, val b: Int) {
+  RED(255, 0, 0), ORANGE(255, 165, 0), BLUE(0, 0, 255);
+  fun rgb() = (r * 256 + g) * 256 + b
+}
+```
+
+### data class
+
+- generates methods: equals, hashCode, copy, toString, and some others
+- compiler only uses the properties defined inside the constructor while auto generating the methods
+
+#### Examples
+
+```kotlin
+data class Contact(val name: String, val address: String)
+contact.copy(address = "New Address") // only address will be change and the rest value will be the same
+```
+
+### Equal & reference equality
+
+- set1 == set2 means `calls equals`
+- set1 === set2 means `calls reference equality`
+- default equals checks reference equality
+
+```kotlin
+class Foo(val a: Int, val b: Int) // default equals only with reference equality
+data class Bar(val a: Int, val b: Int) // equals with member check
+```
+
+```kotlin
+// Auto generated equals
+data class Bar(val first: Int, val second: Int) {
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (this !is Bar) return false
+        return (first == other.first && second == other.second)
+    }
+
+    override fun hashCode(): Int = 
+            first * 31 + second
+  
+}
+
+```
