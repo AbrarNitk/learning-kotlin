@@ -997,3 +997,86 @@ fun use(controller: Controller) {
 }
 
 ```
+
+
+## Object, object expressions and companion objects
+
+- `object` classes = singleton in java
+
+```kotlin
+object KSingleton {
+    fun foo(){}
+}
+
+KSingleton.foo()
+
+// This is equavalent to Java
+
+public class JSingleton {
+    // one public final static member
+    // private constructor
+    // one instance creator method
+    // and members
+}
+
+```
+
+### object expression
+
+- it is a way to create an anonymous class
+- it allows you to implement one or more interfaces, and you don't need to create a full-fledged named class
+- object expression and object declaration are different
+- object expression does not create a singleton object
+
+```kotlin
+val myObject = object : SuperType, Interface1, Interface2 {
+    // Implementation of SuperType, Interface1, and Interface2 methods/properties
+    // Additional properties and functions specific to this object expression
+}
+
+interface Greeter {
+  fun greet(): String
+}
+
+fun main() {
+  val greeter = object : Greeter {
+    override fun greet(): String {
+      return "Hello, I'm an anonymous object!"
+    }
+  }
+  println(greeter.greet()) // Output: "Hello, I'm an anonymous object!"
+}
+
+```
+
+
+### companion object
+
+- special object inside a class
+- can be used instead java static methods
+- companion object can implement an interface
+- companion object can be a receiver of extension function
+- no static keyword, no static method
+
+```kotlin
+class A {
+    private constructor()
+    companion object: Abc<A> {
+        override fun create() = A()
+    }
+}
+
+fun <T> createNewInstance(factory: Factory<T>)
+createNewInstance(A)
+A.create()
+```
+
+### How To declare static members:
+
+- at the top level
+- inside objects
+- inside companion object
+- @JvmStatic to call a companion method from Java
+- we can define extension function to companion objects 
+- `inner` is not applicable to `object`
+
