@@ -798,3 +798,75 @@ class LazyProps {
 lateinit var myData: MyData
 ```
 
+
+
+## Constructor
+
+- var/val on parameter create a property
+
+```kotlin
+class Person(val name: String) {
+    fun printName() {
+        println(name)
+    }
+}
+
+// OR
+
+class Person(name: String) {
+  val name: String
+  init {
+    this.name = name
+  }
+  fun printName() {
+    println(name)
+  }
+}
+```
+
+
+### `extends` and `implements`
+
+```kotlin
+interface Base
+class BaseImpl: Base
+
+open class Parent
+
+class Child: Parent() // constructor call
+```
+
+```kotlin
+open class Parent(val name: String)
+class Child(name: String): Parent(name)
+```
+
+```kotlin
+open class Parent(val name: String)
+class Child: Parent {
+    constructor(name: String, param: Int): super(name)
+}
+```
+
+- In kotlin while overriding the property, it means we are overriding the getter not a field
+
+### Overriding the property
+
+
+```kotlin
+open class Parent {
+    open val foo = 1
+    init {
+        println(foo)
+    }
+}
+
+class Child: Parent() {
+    override val foo = 2
+}
+
+fun main() {
+    Child()
+}
+
+```
