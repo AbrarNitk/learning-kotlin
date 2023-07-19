@@ -1080,3 +1080,41 @@ A.create()
 - we can define extension function to companion objects 
 - `inner` is not applicable to `object`
 
+
+
+## Constants
+
+- const(for primitive types and String)
+- @JvmField(eliminate accessors)
+
+### Compile-time constants
+
+```kotlin
+// the value will be inlined at the compile time
+// means compiler replaces the value everywhere
+const val answer = 42
+```
+
+### `@JvmField`
+
+```kotlin
+// no getter and setter generated for it
+@JvmField
+val prop = MyClass()
+
+// same as in Java
+public static final MyClass prop = new MyClass();
+```
+
+```kotlin
+object A {
+    @JvmField
+    val prop = MyClass() // static field will be generated
+}
+
+class B {
+    @JvmField
+    val prop = MyClass() // regular field will be generated
+}
+
+```
