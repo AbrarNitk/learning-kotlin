@@ -1118,3 +1118,62 @@ class B {
 }
 
 ```
+
+
+## Generic interface and classes
+
+
+### Generic Interface
+
+```kotlin
+interface List<E> {
+    fun get(index: Int): E
+}
+```
+
+
+### Generic Functions
+
+```kotlin
+
+fun <T> List<T>.filter(predicate: (T) -> Boolean): List<T> {
+    val dest = ArrayList<T>()
+    for(e in this) {
+        if((predicate(e))) dest.add(e)
+    }
+  return dest
+}
+```
+
+#### Non-nullable upper bound
+
+- In the below example elements of list cannot be nullable
+
+```kotlin
+fun<T: Any> foo(list: List<T>) {
+    for(element in list) {
+        
+    }
+}
+```
+
+- In the below example elements of the returned list will not be nullable
+
+```kotlin
+fun<T: Any> List<T?>.filterNotNull(): List<T>{}
+```
+
+- With Comparable upper bound
+
+```kotlin
+fun<T: Comparable<T>> max(first: T, second: T): T {
+    return if(first > second) first else second
+}
+```
+
+- Multiple constraints for a type parameter
+
+```kotlin
+fun <T> ensureTrailingPeriod(seq: T): T
+    where T: CharSequence, T: Appendable {}
+```
