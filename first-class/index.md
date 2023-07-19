@@ -937,3 +937,63 @@ data class Bar(val first: Int, val second: Int) {
 }
 
 ```
+
+### `sealed` modifier for class
+
+- restricts class hierarchy
+- all the subclasses must be in the same file
+
+```kotlin
+sealed class Expr
+class Num(val value: Int): Expr()
+class Sum(val left: Expr, val right: Expr): Expr()
+
+fun eval(e: Expr): Int = when(e) {
+    is Num -> e.value
+    is Sum -> eval(e.left) + eval(e.right)
+   // Now here we do not need the else branch
+}
+```
+
+
+### `inner` modifier
+
+- adds reference to the outer class
+
+```kotlin
+class A {
+    class B {
+        inner class C {
+            fun foo() {
+                val a = this@A
+                val b = this@B
+            }
+        }
+    }
+}
+```
+
+### class delegation
+
+```kotlin
+
+class Customer
+interface Repository {
+  fun getById(id: Int): Customer
+  fun getAll(): List<Customer>
+}
+
+interface Logger {
+  fun logAll()
+}
+
+// class delegation
+// by repository delegates to the Repository
+// by logger delegates to the Logger
+class Controller(repository: Repository, logger: Logger): Repository by repository, Logger by logger
+
+fun use(controller: Controller) {
+    controller.logAll()
+}
+
+```
