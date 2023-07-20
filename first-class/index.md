@@ -1327,3 +1327,86 @@ val people = sequence {
 - map.getOrPut(1) { listOf() }
 - groupBy is not lazy and create a map
 - groupingBy is lazy
+
+
+
+## Lambda and Receiver
+
+### The `with` function
+
+- It does remove the repeat of the variable usage
+- this is called lambda with receiver
+```kotlin
+
+val sb = StringBuilder()
+with(sb) {
+    // here this is an implicit to sb
+    // this.appendln("Alphabet: ")
+    // but here this can be omitted
+    appendln("Alphabet: ")
+    for(c in 'a'..'z') {
+        append(c)
+    }
+  toString()
+}
+
+```
+
+
+### lambda vs lambda with receiver
+
+```kotlin
+val isEven: (Int) -> Boolean = { it % 2 == 0 } // lambda
+val isOdd: Int.() -> Boolean = { this % 2 == 0 } // lambda with receiver
+
+isEven(0)
+1.isOdd()
+```
+
+
+### The `with` function declaration
+
+```kotlin
+inline fun <T, R>with(receiver: T, block: T.() -> R): R = receiver.block()
+
+with(sb) {
+    append("")
+}
+
+```
+
+#### More useful library functions
+
+- with
+```kotlin
+with(window) {
+    // by default window is with
+    width = 300
+    height = 200
+    isVisible = true
+}
+```
+- T.run: like with, but extension and can be use safely with optional types
+```
+// only called if windowById["main"] exists 
+windowById["main"]?.run {
+    // by default window is with
+    width = 300
+    height = 200
+    isVisible = true
+}
+```
+- T.let
+- T.apply: `apply` returns receiver as a result
+- T.also: it takes regular lambda instead of this
+
+
+
+### lambda and receiver
+
+|                         | `{ ..this.. }` | `{ ..it.. }` |
+|:-----------------------:|:--------------:|:------------:|
+| return result of lambda |      run       |     let      |
+|     return receiver     |     apply      |     also     |
+
+
