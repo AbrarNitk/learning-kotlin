@@ -1252,3 +1252,59 @@ val (name, _, phoneNumber) = Contact("", "", "")
   ```
 - takeUnless: Just opposite to takeIf
 - repeat: repeat given number of times `repeat(n)`
+- use: use instead of try catch to close the resources automatically
+- withLock
+- synchronise
+
+
+
+### Power of `inline`
+
+- compiler substitutes a body of the function instead of calling it
+- No performance overhead
+
+
+## Collections and Sequences 
+
+### Sequences
+
+- lazy evaluation
+- it stores the data and function together
+- It does not run the functions until the result is not needed
+- `val seq = listOf(1, 2, 3).asSequence()`
+
+
+
+### Creating Sequences
+
+```kotlin
+generateSequence { Random.nextInt() }
+
+// benefit
+let input = generateSequence { readLine().takeIf { it != "exit" } }
+```
+
+
+### `yield`
+
+- generate the sequences
+
+```kotlin
+val numbers = sequence { 
+    var x = 0
+  while (true) {
+      yield(x++)
+  }
+}
+```
+
+
+```kotlin
+sequence { 
+    yield(value)
+    doSomeThing()
+    yieldAll(list)
+    doSomethingElse()
+    yieldAll(sequence)
+}
+```
