@@ -1422,3 +1422,38 @@ windowById["main"]?.run {
 - () -> Boolean == Function0<Boolean>
 - (Order) -> Int == Function1<Order, Int>
 - (Int, Int) -> Int == Function2<Int, Int, Int>
+
+
+### Types Hierarchy
+
+- Instead of void we use Unit
+- Nothing is different to Unit and void(It means function never returns)
+- Nothing: a type has no value
+- Unit: means the functions completes successfully
+- Nothing: means the function never completes
+- Nothing: mostly used where functions only throws exceptions
+- Nothing: function have infinite loop
+- Nothing is also equivalent to void
+
+### Nullable Types
+
+- Kotlin == Java
+- Type? == @Nullable Type
+- Type == @NotNull Type
+- Type!(Nor Nullable, Nor NotNullable) == Type, for safe side Type? == Type
+- Advice
+- Most of the time Annotate Java Types
+- Specify types explicitly 
+
+
+### Make it an error
+
+- build.gradle
+
+```kotlin
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs += "-Xjsr305=strict"
+    }
+}
+```
