@@ -1410,3 +1410,15 @@ windowById["main"]?.run {
 |     return receiver     |     apply      |     also     |
 
 
+
+## Kotlin Types
+
+- If it is nullable type is it going be an object in the case of primitive types also
+- List<Int> == List<Inetger>
+- Array<Int> == Integer[]
+- IntArray == int[]
+- Kotlin.String == java.lang.String
+- Any == Object
+- () -> Boolean == Function0<Boolean>
+- (Order) -> Int == Function1<Order, Int>
+- (Int, Int) -> Int == Function2<Int, Int, Int>
