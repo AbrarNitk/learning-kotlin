@@ -1308,3 +1308,22 @@ sequence {
     yieldAll(sequence)
 }
 ```
+
+
+## Library functions
+
+```kotlin
+val people = sequence { 
+    var x = 0
+  while (true){
+      yield(x++)
+  }
+}
+```
+
+- people.filter { it.age > 5 }.size == people.count { it.age > 5 }
+- people.sortedBy { it.age }.reversed() == people.sortedByDescending { it.age }
+- people.map { p -> p.takeIf { it.isPublic }?.name }.filterNonNull() == people.mapNotNull
+- map.getOrPut(1) { listOf() }
+- groupBy is not lazy and create a map
+- groupingBy is lazy
