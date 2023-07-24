@@ -793,6 +793,8 @@ class LazyProps {
 - variable can not also be final
 - it can not be null also
 - can not be a primitive types
+- do not want to initialize int the constructor but after that 
+
 
 ```kotlin
 lateinit var myData: MyData
@@ -1446,7 +1448,7 @@ windowById["main"]?.run {
 - Specify types explicitly 
 
 
-### Make it an error
+### Make it an error for Nullable Types
 
 - build.gradle
 
